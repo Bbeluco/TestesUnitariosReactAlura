@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react";
-import Cabecalho from ".";
+import Cabecalho from "./index";
 
 test("Deve renderizar o nome do usuario logado", () => {
     render(<Cabecalho />);
