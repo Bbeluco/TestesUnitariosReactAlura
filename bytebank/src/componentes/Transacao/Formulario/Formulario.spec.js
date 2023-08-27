@@ -22,3 +22,15 @@ describe('Deve renderizar o campo de input', () => {
     expect(campoInput).toHaveValue(50);
   });
 });
+
+describe('Deve renderizar o botao de submit', () => {
+  test('Vezes em que o botao foi acionado', () => {
+    const realizarTransacao = jest.fn();
+
+    render(<Formulario realizarTransacao={realizarTransacao} />);
+    const botao = screen.getByRole('button');
+    userEvent.click(botao);
+
+    expect(realizarTransacao).toBeCalledTimes(1);
+  });
+});
