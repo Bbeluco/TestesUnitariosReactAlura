@@ -34,3 +34,26 @@ describe('Deve renderizar o botao de submit', () => {
     expect(realizarTransacao).toBeCalledTimes(1);
   });
 });
+
+describe('Deve selecionar uma opcao de transacao', () => {
+  test('Deve selecionar a opcao de depósito', () => {
+    render(<Formulario />);
+    const selectTipoTransacao = screen.getByTestId('select-opcoes');
+    userEvent.selectOptions(selectTipoTransacao, ['Depósito']);
+
+    const optionTransacaoVazio = screen.getByRole('option', {
+      name: 'Selecione um tipo de transação',
+    });
+
+    const optionTransacaoDeposito = screen.getByRole('option', {
+      name: 'Depósito',
+    });
+
+    const optionTransacaoTransferencia = screen.getByRole('option', {
+      name: 'Transferência',
+    });
+    expect(optionTransacaoVazio.selected).toBe(false);
+    expect(optionTransacaoDeposito.selected).toBe(true);
+    expect(optionTransacaoTransferencia.selected).toBe(false);
+  });
+});
